@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Product Order Form</title>
@@ -11,19 +10,15 @@
       max-width: 500px;
       margin: auto;
     }
-
     label {
       display: block;
       margin-top: 10px;
     }
-
-    input,
-    select {
+    input, select {
       width: 100%;
       padding: 8px;
       margin-top: 5px;
     }
-
     button {
       margin-top: 15px;
       padding: 10px;
@@ -34,7 +29,6 @@
     }
   </style>
 </head>
-
 <body>
 
   <h2>Product Order Form</h2>
@@ -54,6 +48,32 @@
       <option value="Laptop">Laptop</option>
       <option value="Phone">Phone</option>
       <option value="Tablet">Tablet</option>
+      <option value="Headphones">Headphones</option>
+      <option value="Smartwatch">Smartwatch</option>
+      <option value="Keyboard">Keyboard</option>
+      <option value="Mouse">Mouse</option>
+      <option value="Monitor">Monitor</option>
+      <option value="Gaming Console">Gaming Console</option>
+      <option value="Printer">Printer</option>
+      <option value="Router">Router</option>
+      <option value="SSD">SSD</option>
+      <option value="External Hard Drive">External Hard Drive</option>
+      <option value="Smart TV">Smart TV</option>
+      <option value="Drone">Drone</option>
+      <option value="Camera">Camera</option>
+      <option value="Microphone">Microphone</option>
+      <option value="Speakers">Speakers</option>
+      <option value="VR Headset">VR Headset</option>
+      <option value="Power Bank">Power Bank</option>
+      <option value="Tripod">Tripod</option>
+      <option value="USB Flash Drive">USB Flash Drive</option>
+      <option value="Projector">Projector</option>
+      <option value="Graphics Card">Graphics Card</option>
+      <option value="RAM">RAM</option>
+      <option value="Laptop Stand">Laptop Stand</option>
+      <option value="Cooling Pad">Cooling Pad</option>
+      <option value="Smart Bulb">Smart Bulb</option>
+      <option value="Wi-Fi Extender">Wi-Fi Extender</option>
     </select>
 
     <label for="quantity">Quantity</label>
@@ -74,29 +94,20 @@
       const product = document.getElementById("product").value;
       const quantity = document.getElementById("quantity").value;
 
-      // Phone validation: starts with 07 or 01 and is 10 digits
       const phonePattern = /^(07|01)\d{8}$/;
       if (!phonePattern.test(phone)) {
         alert("Phone number must start with 07 or 01 and be exactly 10 digits.");
         return;
       }
 
-      // Email validation
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailPattern.test(email)) {
         alert("Please enter a valid email address.");
         return;
       }
 
-      const formData = {
-        fullName,
-        phone,
-        email,
-        product,
-        quantity
-      };
+      const formData = { fullName, phone, email, product, quantity };
 
-      // Replace with your Make.com webhook URL
       const webhookURL = "https://hook.eu2.make.com/k7uq9hgggk7lg9slxmelqu1debv6xsup";
 
       fetch(webhookURL, {
@@ -106,8 +117,12 @@
       })
         .then(response => {
           if (response.ok) {
-            document.getElementById("confirmation").style.display = "block";
+            const confirmation = document.getElementById("confirmation");
+            confirmation.style.display = "block";
             document.getElementById("orderForm").reset();
+            
+            // Hide confirmation message after 30 seconds
+            setTimeout(() => confirmation.style.display = "none", 3000);
           } else {
             alert("Something went wrong. Please try again.");
           }
@@ -116,7 +131,5 @@
     });
   </script>
 
-
 </body>
-
 </html>

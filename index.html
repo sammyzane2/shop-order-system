@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Product Order Form</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background: #28a745;
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Product Order Form</h2>
+
+  <form id="orderForm">
+    <label for="fullName">Full Name</label>
+    <input type="text" id="fullName" name="fullName" required>
+
+    <label for="phone">Phone Number</label>
+    <input type="text" id="phone" name="phone" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="product">Product</label>
+    <select id="product" name="product" required>
+      <option value="Laptop">Laptop</option>
+      <option value="Phone">Phone</option>
+      <option value="Tablet">Tablet</option>
+    </select>
+
+    <label for="quantity">Quantity</label>
+    <input type="number" id="quantity" name="quantity" min="1" required>
+
+    <button type="submit">Submit Order</button>
+  </form>
+
+  <p id="confirmation" style="color: green; display: none;">Your order has been submitted successfully!</p>
+
+  <script>
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const fullName = document.getElementById("fullName").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const product = document.getElementById("product").value;
+      const quantity = document.getElementById("quantity").value;
+
+      // Phone validation: starts with 07 or 01 and is 10 digits
+      const phonePattern = /^(07|01)\d{8}$/;
+      if (!phonePattern.test(phone)) {
+        alert("Phone number must start with 07 or 01 and be exactly 10 digits.");
+        return;
+      }
+
+      // Email validation
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      const formData = {
+        fullName,
+        phone,
+        email,
+        product,
+        quantity
+      };
+
+      // Replace with your Make.com webhook URL
+      const webhookURL = "https://hook.eu2.make.com/k7uq9hgggk7lg9slxmelqu1debv6xsup";
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(formData)
+      })
+        .then(response => {
+          if (response.ok) {
+            document.getElementById("confirmation").style.display = "block";
+            document.getElementById("orderForm").reset();
+          } else {
+            alert("Something went wrong. Please try again.");
+          }
+        })
+        .catch(() => alert("Network error"));
+    });
+  </script>
+
+
+</body>
+
+</html>

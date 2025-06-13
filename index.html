@@ -50,31 +50,10 @@
       <option value="Tablet">Tablet</option>
       <option value="Headphones">Headphones</option>
       <option value="Smartwatch">Smartwatch</option>
-      <option value="Keyboard">Keyboard</option>
-      <option value="Mouse">Mouse</option>
-      <option value="Monitor">Monitor</option>
-      <option value="Gaming Console">Gaming Console</option>
-      <option value="Printer">Printer</option>
-      <option value="Router">Router</option>
-      <option value="SSD">SSD</option>
-      <option value="External Hard Drive">External Hard Drive</option>
-      <option value="Smart TV">Smart TV</option>
-      <option value="Drone">Drone</option>
-      <option value="Camera">Camera</option>
-      <option value="Microphone">Microphone</option>
-      <option value="Speakers">Speakers</option>
-      <option value="VR Headset">VR Headset</option>
-      <option value="Power Bank">Power Bank</option>
-      <option value="Tripod">Tripod</option>
-      <option value="USB Flash Drive">USB Flash Drive</option>
-      <option value="Projector">Projector</option>
-      <option value="Graphics Card">Graphics Card</option>
-      <option value="RAM">RAM</option>
-      <option value="Laptop Stand">Laptop Stand</option>
-      <option value="Cooling Pad">Cooling Pad</option>
-      <option value="Smart Bulb">Smart Bulb</option>
-      <option value="Wi-Fi Extender">Wi-Fi Extender</option>
     </select>
+
+    <label for="homeAddress">Home Address</label>
+    <input type="text" id="homeAddress" name="homeAddress" required>
 
     <label for="quantity">Quantity</label>
     <input type="number" id="quantity" name="quantity" min="1" required>
@@ -92,6 +71,7 @@
       const phone = document.getElementById("phone").value.trim();
       const email = document.getElementById("email").value.trim();
       const product = document.getElementById("product").value;
+      const homeAddress = document.getElementById("homeAddress").value.trim();
       const quantity = document.getElementById("quantity").value;
 
       const phonePattern = /^(07|01)\d{8}$/;
@@ -106,7 +86,7 @@
         return;
       }
 
-      const formData = { fullName, phone, email, product, quantity };
+      const formData = { fullName, phone, email, product, homeAddress, quantity };
 
       const webhookURL = "https://hook.eu2.make.com/k7uq9hgggk7lg9slxmelqu1debv6xsup";
 
@@ -121,7 +101,6 @@
             confirmation.style.display = "block";
             document.getElementById("orderForm").reset();
             
-            // Hide confirmation message after 30 seconds
             setTimeout(() => confirmation.style.display = "none", 3000);
           } else {
             alert("Something went wrong. Please try again.");

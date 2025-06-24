@@ -2,137 +2,718 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Product Order Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digitronix Kenya - Premium Tech Products</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
     body {
-      font-family: Arial;
-      padding: 20px;
-      max-width: 500px;
-      margin: auto;
+      font-family: 'Poppins', sans-serif;
     }
-    label {
-      display: block;
-      margin-top: 10px;
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
-    input, select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
+    
+    .nav-link:hover {
+      color: #10b981;
     }
-    button {
-      margin-top: 15px;
-      padding: 10px;
-      width: 100%;
-      background: #28a745;
-      color: white;
-      border: none;
+    
+    .order-item:hover {
+      background-color: #f0fdf4;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #10b981;
+      border-radius: 4px;
     }
   </style>
 </head>
-<body>
+<body class="bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 flex items-center">
+            <i class="fas fa-laptop-code text-emerald-500 text-2xl mr-2"></i>
+            <span class="text-xl font-bold text-gray-800">Digitronix Kenya</span>
+          </div>
+        </div>
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-4">
+            <a href="#" class="nav-link text-gray-800 hover:text-emerald-500 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="#products" class="nav-link text-gray-800 hover:text-emerald-500 px-3 py-2 rounded-md text-sm font-medium">Products</a>
+            <a href="#order" class="nav-link text-gray-800 hover:text-emerald-500 px-3 py-2 rounded-md text-sm font-medium">Order</a>
+            <a href="#pending-orders" class="nav-link text-gray-800 hover:text-emerald-500 px-3 py-2 rounded-md text-sm font-medium">My Orders</a>
+          </div>
+        </div>
+        <div class="md:hidden">
+          <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-emerald-500 focus:outline-none">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile menu -->
+    <div class="mobile-menu hidden md:hidden bg-white shadow-lg">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="#" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:text-emerald-500">Home</a>
+        <a href="#products" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:text-emerald-500">Products</a>
+        <a href="#order" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:text-emerald-500">Order</a>
+        <a href="#pending-orders" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:text-emerald-500">My Orders</a>
+      </div>
+    </div>
+  </nav>
 
-  <h2>Product Order Form</h2>
+  <!-- Hero Section -->
+  <div class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="md:flex md:items-center md:justify-between">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <h1 class="text-4xl font-bold mb-4">Premium Tech Products in Kenya</h1>
+          <p class="text-lg mb-6">Discover the latest gadgets and electronics at competitive prices with fast delivery across Kenya.</p>
+          <a href="#products" class="bg-white text-emerald-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium inline-block">Shop Now</a>
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Tech products" class="rounded-lg shadow-xl w-full max-w-md">
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <form id="orderForm">
-    <label for="fullName">Full Name</label>
-    <input type="text" id="fullName" name="fullName" required>
+  <!-- Featured Products -->
+  <section id="products" class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">Featured Products</h2>
+        <div class="w-20 h-1 bg-emerald-500 mx-auto"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <!-- Product 1 -->
+        <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+          <div class="h-48 bg-gray-100 flex items-center justify-center">
+            <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" 
+                 alt="MacBook Pro" class="h-full object-contain">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-1">MacBook Pro M2</h3>
+            <p class="text-gray-600 text-sm mb-3">13-inch, 8GB RAM, 256GB SSD - The perfect balance of power and portability.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-bold">KES 185,000</span>
+              <button class="add-to-cart bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 rounded text-sm" 
+                      data-product="MacBook Pro M2" data-price="185000">
+                <i class="fas fa-cart-plus mr-1"></i> Order
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+          <div class="h-48 bg-gray-100 flex items-center justify-center">
+            <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" 
+                 alt="iPhone 14 Pro" class="h-full object-contain">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-1">iPhone 14 Pro</h3>
+            <p class="text-gray-600 text-sm mb-3">128GB, Space Black - Dynamic Island, A16 Bionic chip, Pro camera system.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-bold">KES 155,000</span>
+              <button class="add-to-cart bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 rounded text-sm" 
+                      data-product="iPhone 14 Pro" data-price="155000">
+                <i class="fas fa-cart-plus mr-1"></i> Order
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+          <div class="h-48 bg-gray-100 flex items-center justify-center">
+            <img src="https://images.unsplash.com/photo-1629131726692-1accd0d53eb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                 alt="Samsung Galaxy Tab S8" class="h-full object-contain">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-1">Samsung Galaxy Tab S8</h3>
+            <p class="text-gray-600 text-sm mb-3">11-inch, 8GB RAM, 128GB - Includes S Pen, 120Hz AMOLED display.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-bold">KES 95,000</span>
+              <button class="add-to-cart bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 rounded text-sm" 
+                      data-product="Samsung Galaxy Tab S8" data-price="95000">
+                <i class="fas fa-cart-plus mr-1"></i> Order
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 4 -->
+        <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+          <div class="h-48 bg-gray-100 flex items-center justify-center">
+            <img src="https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                 alt="Sony WH-1000XM5" class="h-full object-contain">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-1">Sony WH-1000XM5</h3>
+            <p class="text-gray-600 text-sm mb-3">Industry-leading noise cancellation with 30-hour battery life.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-bold">KES 42,000</span>
+              <button class="add-to-cart bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 rounded text-sm" 
+                      data-product="Sony WH-1000XM5" data-price="42000">
+                <i class="fas fa-cart-plus mr-1"></i> Order
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 5 -->
+        <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+          <div class="h-48 bg-gray-100 flex items-center justify-center">
+            <img src="https://images.unsplash.com/photo-1520390138845-fd2d229dd553?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1489&q=80" 
+                 alt="Apple Watch Series 8" class="h-full object-contain">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-1">Apple Watch Series 8</h3>
+            <p class="text-gray-600 text-sm mb-3">GPS + Cellular, 45mm Midnight - Advanced health monitoring.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-bold">KES 68,000</span>
+              <button class="add-to-cart bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 rounded text-sm" 
+                      data-product="Apple Watch Series 8" data-price="68000">
+                <i class="fas fa-cart-plus mr-1"></i> Order
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 6 -->
+        <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+          <div class="h-48 bg-gray-100 flex items-center justify-center">
+            <img src="https://images.unsplash.com/photo-1555685434-4c45b3a89d58?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                 alt="Logitech MX Keys" class="h-full object-contain">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-1">Logitech MX Keys</h3>
+            <p class="text-gray-600 text-sm mb-3">Wireless illuminated keyboard with smart backlighting.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-bold">KES 12,500</span>
+              <button class="add-to-cart bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 rounded text-sm" 
+                      data-product="Logitech MX Keys" data-price="12500">
+                <i class="fas fa-cart-plus mr-1"></i> Order
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 7 -->
+        <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+          <div class="h-48 bg-gray-100 flex items-center justify-center">
+            <img src="https://images.unsplash.com/photo-1527814050087-3793815479db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" 
+                 alt="Logitech MX Master 3" class="h-full object-contain">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-1">Logitech MX Master 3</h3>
+            <p class="text-gray-600 text-sm mb-3">Advanced wireless mouse with ultra-fast scroll wheel.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-bold">KES 14,200</span>
+              <button class="add-to-cart bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 rounded text-sm" 
+                      data-product="Logitech MX Master 3" data-price="14200">
+                <i class="fas fa-cart-plus mr-1"></i> Order
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 8 -->
+        <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+          <div class="h-48 bg-gray-100 flex items-center justify-center">
+            <img src="https://images.unsplash.com/photo-1555615260-4c166dba907f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                 alt="Dell UltraSharp 27" class="h-full object-contain">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-1">Dell UltraSharp 27" 4K</h3>
+            <p class="text-gray-600 text-sm mb-3">U2723QE - 3840x2160, 99% DCI-P3, USB-C connectivity.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-bold">KES 72,000</span>
+              <button class="add-to-cart bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 rounded text-sm" 
+                      data-product="Dell UltraSharp 27" data-price="72000">
+                <i class="fas fa-cart-plus mr-1"></i> Order
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 9 -->
+        <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+          <div class="h-48 bg-gray-100 flex items-center justify-center">
+            <img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80" 
+                 alt="PlayStation 5" class="h-full object-contain">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-1">PlayStation 5</h3>
+            <p class="text-gray-600 text-sm mb-3">Disc Edition - Experience lightning-fast loading with an ultra-high speed SSD.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-bold">KES 89,000</span>
+              <button class="add-to-cart bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 rounded text-sm" 
+                      data-product="PlayStation 5" data-price="89000">
+                <i class="fas fa-cart-plus mr-1"></i> Order
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 10 -->
+        <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+          <div class="h-48 bg-gray-100 flex items-center justify-center">
+            <img src="https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80" 
+                 alt="HP LaserJet Pro" class="h-full object-contain">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-1">HP LaserJet Pro MFP</h3>
+            <p class="text-gray-600 text-sm mb-3">M428fdw - Fast printing, scanning, copying & faxing.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-bold">KES 38,500</span>
+              <button class="add-to-cart bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 rounded text-sm" 
+                      data-product="HP LaserJet Pro MFP" data-price="38500">
+                <i class="fas fa-cart-plus mr-1"></i> Order
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <label for="phone">Phone Number</label>
-    <input type="text" id="phone" name="phone" required>
+  <!-- Order Form -->
+  <section id="order" class="py-12 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="bg-emerald-600 px-6 py-4">
+          <h2 class="text-2xl font-bold text-white">Place Your Order</h2>
+        </div>
+        
+        <div class="p-6">
+          <form id="orderForm" class="space-y-4">
+            <div>
+              <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              <input type="text" id="fullName" name="fullName" required
+                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500">
+              <p class="text-xs text-gray-500 mt-1">Enter your full name as it appears on your ID</p>
+            </div>
+            
+            <div>
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+              <input type="tel" id="phone" name="phone" required pattern="^(07|01)[0-9]{8}$"
+                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500"
+                     placeholder="0712345678">
+              <p class="text-xs text-gray-500 mt-1">Must start with 07 or 01 and be exactly 10 digits</p>
+            </div>
+            
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <input type="email" id="email" name="email" required
+                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500">
+              <p class="text-xs text-gray-500 mt-1">We'll send your order confirmation here</p>
+            </div>
+            
+            <div>
+              <label for="product" class="block text-sm font-medium text-gray-700 mb-1">Product</label>
+              <select id="product" name="product" required
+                      class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500">
+                <option value="">Select a product</option>
+                <option value="MacBook Pro M2">MacBook Pro M2 - KES 185,000</option>
+                <option value="iPhone 14 Pro">iPhone 14 Pro - KES 155,000</option>
+                <option value="Samsung Galaxy Tab S8">Samsung Galaxy Tab S8 - KES 95,000</option>
+                <option value="Sony WH-1000XM5">Sony WH-1000XM5 - KES 42,000</option>
+                <option value="Apple Watch Series 8">Apple Watch Series 8 - KES 68,000</option>
+                <option value="Logitech MX Keys">Logitech MX Keys - KES 12,500</option>
+                <option value="Logitech MX Master 3">Logitech MX Master 3 - KES 14,200</option>
+                <option value="Dell UltraSharp 27">Dell UltraSharp 27" 4K - KES 72,000</option>
+                <option value="PlayStation 5">PlayStation 5 - KES 89,000</option>
+                <option value="HP LaserJet Pro MFP">HP LaserJet Pro MFP - KES 38,500</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="homeAddress" class="block text-sm font-medium text-gray-700 mb-1">Home Address</label>
+              <textarea id="homeAddress" name="homeAddress" rows="3" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500"></textarea>
+              <p class="text-xs text-gray-500 mt-1">Include county, town, and street for accurate delivery</p>
+            </div>
+            
+            <div>
+              <label for="quantity" class="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+              <input type="number" id="quantity" name="quantity" min="1" value="1" required
+                     class="w-20 px-4 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500">
+            </div>
+            
+            <div class="pt-4">
+              <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-md transition duration-300">
+                <i class="fas fa-paper-plane mr-2"></i> Submit Order
+              </button>
+            </div>
+          </form>
+          
+          <div id="confirmation" class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-md">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+              </div>
+              <div class="ml-3">
+                <h3 class="text-sm font-medium text-green-800">Order Received Successfully!</h3>
+                <div class="mt-2 text-sm text-green-700">
+                  <p>The order has been received successfully. Check your email for your Order ID.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required>
+  <!-- Pending Orders Section -->
+  <section id="pending-orders" class="py-12 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">Check Your Orders</h2>
+        <div class="w-20 h-1 bg-emerald-500 mx-auto"></div>
+      </div>
+      
+      <div class="bg-gray-50 rounded-lg shadow-md p-6">
+        <div id="ordersList" class="space-y-4">
+          <!-- Orders will be displayed here -->
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <label for="product">Product</label>
-    <select id="product" name="product" required>
-      <option value="Laptop">Laptop</option>
-      <option value="Phone">Phone</option>
-      <option value="Tablet">Tablet</option>
-      <option value="Headphones">Headphones</option>
-      <option value="Smartwatch">Smartwatch</option>
-      <option value="Keyboard">Keyboard</option>
-      <option value="Mouse">Mouse</option>
-      <option value="Monitor">Monitor</option>
-      <option value="Gaming Console">Gaming Console</option>
-      <option value="Printer">Printer</option>
-      <option value="Router">Router</option>
-      <option value="SSD">SSD</option>
-      <option value="External Hard Drive">External Hard Drive</option>
-      <option value="Smart TV">Smart TV</option>
-      <option value="Drone">Drone</option>
-      <option value="Camera">Camera</option>
-      <option value="Microphone">Microphone</option>
-      <option value="Speakers">Speakers</option>
-      <option value="VR Headset">VR Headset</option>
-      <option value="Power Bank">Power Bank</option>
-      <option value="Tripod">Tripod</option>
-      <option value="USB Flash Drive">USB Flash Drive</option>
-      <option value="Projector">Projector</option>
-      <option value="Graphics Card">Graphics Card</option>
-      <option value="RAM">RAM</option>
-      <option value="Laptop Stand">Laptop Stand</option>
-      <option value="Cooling Pad">Cooling Pad</option>
-      <option value="Smart Bulb">Smart Bulb</option>
-      <option value="Wi-Fi Extender">Wi-Fi Extender</option>
-    </select>
-
-    <label for="homeAddress">Home Address</label>
-    <input type="text" id="homeAddress" name="homeAddress" required>
-
-    <label for="quantity">Quantity</label>
-    <input type="number" id="quantity" name="quantity" min="1" required>
-
-    <button type="submit">Submit Order</button>
-  </form>
-
-  <p id="confirmation" style="color: green; display: none;">Your order has been submitted successfully!</p>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">TechHub Kenya</h3>
+          <p class="text-gray-400">Your trusted source for premium tech products in Kenya. Fast delivery, genuine products, excellent customer service.</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-emerald-400">Home</a></li>
+            <li><a href="#products" class="text-gray-400 hover:text-emerald-400">Products</a></li>
+            <li><a href="#order" class="text-gray-400 hover:text-emerald-400">Order</a></li>
+            <li><a href="#pending-orders" class="text-gray-400 hover:text-emerald-400">My Orders</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-emerald-400"></i> Nairobi, Kenya</li>
+            <li class="flex items-center"><i class="fas fa-phone-alt mr-2 text-emerald-400"></i> +254 700 123 456</li>
+            <li class="flex items-center"><i class="fas fa-envelope mr-2 text-emerald-400"></i> info@techhubkenya.co.ke</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2023 TechHub Kenya. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
   <script>
-    document.getElementById("orderForm").addEventListener("submit", function (e) {
+    // Mobile menu toggle
+    document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+      document.querySelector('.mobile-menu').classList.toggle('hidden');
+    });
+    
+    // Add to cart buttons functionality
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', function() {
+        const product = this.dataset.product;
+        const price = this.dataset.price;
+        
+        document.getElementById('product').value = product;
+        document.getElementById('quantity').value = 1;
+        
+        // Scroll to order form
+        document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+    
+    // Form submission
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
       e.preventDefault();
-
-      const fullName = document.getElementById("fullName").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const product = document.getElementById("product").value;
-      const homeAddress = document.getElementById("homeAddress").value.trim();
-      const quantity = document.getElementById("quantity").value;
-
+      
+      // Get form values
+      const fullName = document.getElementById('fullName').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const product = document.getElementById('product').value;
+      const homeAddress = document.getElementById('homeAddress').value.trim();
+      const quantity = document.getElementById('quantity').value;
+      
+      // Validate phone number
       const phonePattern = /^(07|01)\d{8}$/;
       if (!phonePattern.test(phone)) {
         alert("Phone number must start with 07 or 01 and be exactly 10 digits.");
         return;
       }
-
+      
+      // Validate email
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailPattern.test(email)) {
         alert("Please enter a valid email address.");
         return;
       }
-
-      const formData = { fullName, phone, email, product, homeAddress, quantity };
-
+      
+      // Prepare data for submission
+      const formData = {
+        id: Date.now(),
+        fullName,
+        phone,
+        email,
+        product,
+        homeAddress,
+        quantity,
+        orderDate: new Date().toISOString(),
+        status: "Pending Payment"
+      };
+      
+      // Webhook URL
       const webhookURL = "https://hook.eu2.make.com/k7uq9hgggk7lg9slxmelqu1debv6xsup";
-
+      
+      // Send data to webhook
       fetch(webhookURL, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(formData)
       })
-        .then(response => {
-          if (response.ok) {
-            const confirmation = document.getElementById("confirmation");
-            confirmation.style.display = "block";
-            document.getElementById("orderForm").reset();
-            
-            setTimeout(() => confirmation.style.display = "none", 3000);
-          } else {
-            alert("Something went wrong. Please try again.");
-          }
-        })
-        .catch(() => alert("Network error"));
+      .then(response => {
+        if (response.ok) {
+          // Show confirmation message
+          const confirmation = document.getElementById('confirmation');
+          confirmation.classList.remove('hidden');
+          
+          // Save order to localStorage for demo purposes
+          saveOrderToLocalStorage(formData);
+          
+          // Reset form
+          document.getElementById('orderForm').reset();
+          
+          // Hide confirmation after 5 seconds
+          setTimeout(() => confirmation.classList.add('hidden'), 5000);
+          
+          // Refresh orders list and scroll to orders section
+          displayOrders();
+          document.getElementById('pending-orders').scrollIntoView({ behavior: 'smooth' });
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      })
+      .catch(() => alert("Network error. Please check your connection and try again."));
     });
-  </script>
+    
+    // Function to save order to localStorage
+    function saveOrderToLocalStorage(orderData) {
+      let orders = JSON.parse(localStorage.getItem('techhubOrders')) || [];
+      orders.push(orderData);
+      localStorage.setItem('techhubOrders', JSON.stringify(orders));
+    }
+    
+    // Function to display orders for a specific email
+    document.getElementById('searchOrdersBtn').addEventListener('click', function() {
+      const email = document.getElementById('searchEmail').value.trim();
+      
+      if (!email) {
+        alert("Please enter your email address to search for orders.");
+        return;
+      }
+      
+      // Get orders from localStorage
+      const allOrders = JSON.parse(localStorage.getItem('techhubOrders')) || [];
+      const userOrders = allOrders.filter(order => order.email.toLowerCase() === email.toLowerCase());
+      
+      const ordersList = document.getElementById('ordersList');
+      
+      if (userOrders.length === 0) {
+        ordersList.innerHTML = `
+          <div class="text-center py-8 text-gray-500">
+            <i class="fas fa-box-open text-4xl mb-3 text-gray-300"></i>
+            <p>No orders found for this email address.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      // Display orders
+      ordersList.innerHTML = `
+        <h3 class="text-lg font-medium text-gray-800 mb-4">Your Orders (${userOrders.length})</h3>
+        ${userOrders.map((order, index) => `
+          <div class="order-item bg-white p-4 rounded-lg border border-gray-200 transition duration-200">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <h4 class="font-medium text-gray-800">${order.product}</h4>
+                <p class="text-sm text-gray-500">Order #${index + 1}</p>
+              </div>
+              <span class="text-emerald-600 font-medium">KES ${formatPrice(calculateTotal(order.product, order.quantity))}</span>
+            </div>
+            <div class="grid grid-cols-2 gap-4 text-sm mt-3">
+              <div>
+                <p class="text-gray-500">Quantity:</p>
+                <p class="text-gray-800">${order.quantity}</p>
+              </div>
+              <div>
+                <p class="text-gray-500">Order Date:</p>
+                <p class="text-gray-800">${new Date(order.orderDate).toLocaleDateString()}</p>
+              </div>
+              <div>
+                <p class="text-gray-500">Status:</p>
+                <p class="${order.status === 'Canceled' ? 'text-red-600' : order.status === 'Paid' ? 'text-green-600' : 'text-yellow-600'}">${order.status || 'Pending Payment'}</p>
+              </div>
+            </div>
+            <div class="mt-4 flex justify-end">
+              <button class="pay-btn bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-md text-sm">
+                <i class="fas fa-credit-card mr-1"></i> Pay for Goods
+              </button>
+            </div>
+          </div>
+        `).join('')}
+      `;
+      
+      // Add event listeners to pay buttons
+      document.querySelectorAll('.pay-btn').forEach((btn, index) => {
+        btn.addEventListener('click', function() {
+          alert(`Payment process would be initiated for order #${index + 1}`);
+        });
+      });
+    });
+    
+    // Helper function to calculate total price
+    function calculateTotal(product, quantity) {
+      const prices = {
+        "MacBook Pro M2": 185000,
+        "iPhone 14 Pro": 155000,
+        "Samsung Galaxy Tab S8": 95000,
+        "Sony WH-1000XM5": 42000,
+        "Apple Watch Series 8": 68000,
+        "Logitech MX Keys": 12500,
+        "Logitech MX Master 3": 14200,
+        "Dell UltraSharp 27": 72000,
+        "PlayStation 5": 89000,
+        "HP LaserJet Pro MFP": 38500
+      };
+      
+      return prices[product] * quantity;
+    }
+    
+    // Helper function to format price with commas
+    function formatPrice(price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 
+    function displayOrders() {
+      const allOrders = JSON.parse(localStorage.getItem('techhubOrders')) || [];
+      const ordersList = document.getElementById('ordersList');
+      if (allOrders.length === 0) {
+        ordersList.innerHTML = `
+          <div class="text-center py-8 text-gray-500">
+            <i class="fas fa-box-open text-4xl mb-3 text-gray-300"></i>
+            <p>No orders found.</p>
+          </div>
+        `;
+        return;
+      }
+      ordersList.innerHTML = allOrders.map((order, index) => `
+        <div class="order-item bg-white p-4 rounded-lg border border-gray-200 transition duration-200">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h4 class="font-medium text-gray-800">${order.product}</h4>
+              <p class="text-sm text-gray-500">Order #${index + 1}</p>
+            </div>
+            <span class="text-emerald-600 font-medium">KES ${formatPrice(calculateTotal(order.product, order.quantity))}</span>
+          </div>
+          <div class="grid grid-cols-2 gap-4 text-sm mt-3">
+            <div>
+              <p class="text-gray-500">Quantity:</p>
+              <p class="text-gray-800">${order.quantity}</p>
+            </div>
+            <div>
+              <p class="text-gray-500">Order Date:</p>
+              <p class="text-gray-800">${new Date(order.orderDate).toLocaleDateString()}</p>
+            </div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 justify-end">
+            <button class="edit-btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm" data-id="${order.id}">
+              <i class="fas fa-edit mr-1"></i> Edit
+            </button>
+            <button class="cancel-btn bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm" data-id="${order.id}">
+              <i class="fas fa-ban mr-1"></i> Cancel
+            </button>
+            <button class="pay-btn bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-md text-sm" data-id="${order.id}">
+              <i class="fas fa-credit-card mr-1"></i> Pay
+            </button>
+          </div>
+        </div>
+      `).join('');
+      // Add event listeners
+      document.querySelectorAll('.cancel-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const id = Number(this.dataset.id);
+          cancelOrder(id);
+        });
+      });
+      document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const id = Number(this.dataset.id);
+          editOrder(id);
+        });
+      });
+      document.querySelectorAll('.pay-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const id = Number(this.dataset.id);
+          payOrder(id);
+        });
+      });
+    }
+    function cancelOrder(id) {
+      let orders = JSON.parse(localStorage.getItem('techhubOrders')) || [];
+      orders = orders.filter(order => order.id !== id);
+      localStorage.setItem('techhubOrders', JSON.stringify(orders));
+      displayOrders();
+      alert('Order has been cancelled.');
+    }
+    function editOrder(id) {
+      let orders = JSON.parse(localStorage.getItem('techhubOrders')) || [];
+      const order = orders.find(order => order.id === id);
+      if (!order) return;
+      document.getElementById('fullName').value = order.fullName;
+      document.getElementById('phone').value = order.phone;
+      document.getElementById('email').value = order.email;
+      document.getElementById('product').value = order.product;
+      document.getElementById('homeAddress').value = order.homeAddress;
+      document.getElementById('quantity').value = order.quantity;
+      orders = orders.filter(o => o.id !== id);
+      localStorage.setItem('techhubOrders', JSON.stringify(orders));
+      displayOrders();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function payOrder(id) {
+      alert('Development still in progress');
+    }
+    // Call displayOrders() on page load
+    window.addEventListener('DOMContentLoaded', displayOrders);
+  </script>
 </body>
 </html>
